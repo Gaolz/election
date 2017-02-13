@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :items
+    resources :categories
     resources :sessions, only: [:new, :create, :destroy]
-    root to: 'items#index', as: :root
+    root to: 'categories#index', as: :root
   end
 end

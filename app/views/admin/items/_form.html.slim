@@ -8,7 +8,7 @@
                     h2 新建
             .panel-body
                 .form-group.row
-                    = f.label :title, "主题：", class: "col-2 col-form-label"
+                    = f.label :title, "名称：", class: "col-2 col-form-label"
                     .col-10
                         = f.text_field :title, placeholder: t('item.title'), class: 'form-control'
                 .form-group.row
@@ -16,13 +16,10 @@
                     .col-10
                         = f.text_area :info, placeholder: t('item.info'), class: 'form-control'
                 .form-group.row
-                    = f.label :media, "类型: ", class: "col-2 col-form-label"
+                    = f.label :media, "平台: ", class: "col-2 col-form-label"
                     .col-10
                         = f.select :media, [['微信', 1], ['微博', 2]], {}, { class: 'form-control custom-select mb-2 mr-sm-2 mb-sm-0' }
-                .form-group.row
-                    = f.label :category_id, "所属: ", class: "col-2 col-form-label"
-                    .col-10
-                        = f.select :category_id, options_from_collection_for_select(Category.all, :id, :name), {}, { class: 'form-control custom-select mb-2 mr-sm-2 mb-sm-0' }
+                    = f.hidden_field :category_id, value: @category.id
                 .form-group.row
                     = f.label :avatar, "图片: ", class: "col-2 col-form-label"
                     .col-10
@@ -34,4 +31,4 @@
                             .col
                                 = f.submit t('item.submit'), class: 'btn btn-success'
                             .col
-                                = link_to '返回', admin_items_path, class: 'btn btn-secondary'
+                                = link_to '返回', admin_category_path(@category), class: 'btn btn-secondary'

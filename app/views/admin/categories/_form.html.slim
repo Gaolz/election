@@ -1,0 +1,21 @@
+.row.justify-content-center
+    .col-6
+        .panel
+            .panel-head
+                - if params[:action] == "edit"
+                    h2 修改
+                - else
+                    h2 新建
+            .panel-body
+                .form-group.row
+                    = f.label :name, "名称：", class: "col-2 col-form-label"
+                    .col-10
+                        = f.text_field :name, placeholder: '名称', class: 'form-control'
+                .form-group.row
+                    label.col-2.col-form-label
+                    .col-10
+                        .row
+                            .col
+                                = f.submit '提交', class: 'btn btn-success'
+                            .col
+                                = link_to '返回', admin_categories_path, class: 'btn btn-secondary'
