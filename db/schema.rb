@@ -10,16 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210064410) do
+ActiveRecord::Schema.define(version: 20170210084105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", limit: 10
+  end
 
   create_table "items", force: :cascade do |t|
     t.string  "title",                             null: false
     t.text    "info"
     t.string  "avatar",                            null: false
-    t.integer "type",        limit: 2, default: 0, null: false
+    t.integer "media",       limit: 2, default: 0, null: false
     t.integer "category_id",                       null: false
   end
 

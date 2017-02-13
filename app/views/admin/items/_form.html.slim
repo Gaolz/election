@@ -1,0 +1,37 @@
+.row.justify-content-center
+    .col-6
+        .panel
+            .panel-head
+                - if params[:action] == "edit"
+                    h2 修改
+                - else
+                    h2 新建
+            .panel-body
+                .form-group.row
+                    = f.label :title, "主题：", class: "col-2 col-form-label"
+                    .col-10
+                        = f.text_field :title, placeholder: t('item.title'), class: 'form-control'
+                .form-group.row
+                    = f.label :info, "简介：", class: "col-2 col-form-label"
+                    .col-10
+                        = f.text_area :info, placeholder: t('item.info'), class: 'form-control'
+                .form-group.row
+                    = f.label :media, "类型: ", class: "col-2 col-form-label"
+                    .col-10
+                        = f.select :media, [['微信', 1], ['微博', 2]], {}, { class: 'form-control custom-select mb-2 mr-sm-2 mb-sm-0' }
+                .form-group.row
+                    = f.label :category_id, "所属: ", class: "col-2 col-form-label"
+                    .col-10
+                        = f.select :category_id, options_from_collection_for_select(Category.all, :id, :name), {}, { class: 'form-control custom-select mb-2 mr-sm-2 mb-sm-0' }
+                .form-group.row
+                    = f.label :avatar, "图片: ", class: "col-2 col-form-label"
+                    .col-10
+                        = f.file_field :avatar, multipart: true, class: "form-control"
+                .form-group.row
+                    label.col-2.col-form-label
+                    .col-10
+                        .row
+                            .col
+                                = f.submit t('item.submit'), class: 'btn btn-success'
+                            .col
+                                = link_to '返回', admin_items_path, class: 'btn btn-secondary'

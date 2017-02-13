@@ -33,6 +33,10 @@ gem 'turbolinks', '~> 5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'slim-rails', '3.1.0'
+gem 'bootstrap', '~> 4.0.0.alpha6'
+
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick', '4.5.1', require: false
 
 gem 'yettings'
 
