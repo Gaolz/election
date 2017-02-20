@@ -32,6 +32,10 @@ gem 'turbolinks', '~> 5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# redis
+gem 'redis-objects'
+gem 'connection_pool'
+
 gem 'slim-rails', '3.1.0'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 

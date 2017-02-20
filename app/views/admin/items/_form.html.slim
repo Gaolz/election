@@ -2,7 +2,7 @@
     .col-6
         .panel
             .panel-head
-                - if params[:action] == "edit"
+                - if edit_action?
                     h2 修改
                 - else
                     h2 新建
@@ -18,7 +18,7 @@
                 .form-group.row
                     = f.label :media, "平台: ", class: "col-2 col-form-label"
                     .col-10
-                        = f.select :media, [['微信', 1], ['微博', 2]], {}, { class: 'form-control custom-select mb-2 mr-sm-2 mb-sm-0' }
+                        = f.select :media, options_for_select([['微信', 1], ['微博', 2]], @media), {}, { class: 'form-control custom-select mb-2 mr-sm-2 mb-sm-0' }
                     = f.hidden_field :category_id, value: @category.id
                 .form-group.row
                     = f.label :avatar, "图片: ", class: "col-2 col-form-label"
@@ -30,5 +30,6 @@
                         .row
                             .col
                                 = f.submit t('item.submit'), class: 'btn btn-success'
-                            .col
-                                = link_to '返回', admin_category_path(@category), class: 'btn btn-secondary'
+                            - if @category
+                                .col
+                                    = link_to '返回', admin_category_path(@category), class: 'btn btn-secondary'

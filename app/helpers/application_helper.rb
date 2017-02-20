@@ -11,4 +11,8 @@ module ApplicationHelper
 
         flash_messages.join("\n").html_safe
     end
+
+    def edit_action?
+        params[:action] == 'edit'
+    end
 end
