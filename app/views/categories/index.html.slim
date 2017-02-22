@@ -1,0 +1,21 @@
+- title('四川网信办微信微博投票')
+.container
+    .panel-body
+        .container-fluid
+            - @categories.each_slice(2) do |categories|
+                .row
+                    - categories.each do |category|
+                        .col
+                            .card
+                                ul.list-group.list-group-flush
+                                    li.list-group-item
+                                        | 编号：
+                                        = category.id
+                                    li.list-group-item
+                                        | 名称：
+                                        = category.name
+                                    li.list-group-item
+                                        | 得票数：
+                                        strong= category.score
+                                .card-block
+                                    = link_to '查看', category_path(id: category, media: 1), class: 'btn btn-info'

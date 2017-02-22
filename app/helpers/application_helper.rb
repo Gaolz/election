@@ -15,4 +15,17 @@ module ApplicationHelper
     def edit_action?
         params[:action] == 'edit'
     end
+
+    def title(text)
+        content_for :title, text
+    end
+
+    def is_wechat?
+        params[:media] == '1'
+    end
+
+    # To be fix
+    def current_user
+        User.first
+    end
 end

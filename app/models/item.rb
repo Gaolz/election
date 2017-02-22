@@ -28,15 +28,15 @@ class Item < ApplicationRecord
     end
 
     def rank
-        wechat? ? wechar_rank : weibo_rank
+        wechat? ? wechat_rank : weibo_rank
     end
 
     def wechat_rank
-        Item.wechat_vote.rank(id)
+        Item.wechat_vote.revrank(id)&.next || '0'
     end
 
     def weibo_rank
-        Item.weibo_vote.rank(id)
+        Item.weibo_vote.revrank(id)&.next || '0'
     end
 
     def add_score(user=User.first)

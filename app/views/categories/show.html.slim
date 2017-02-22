@@ -1,0 +1,37 @@
+- title(@category.name)
+#main
+    .container-fluid#container
+        .panel-body.category_show
+            .btn-group style="margin-top: 1em;"
+                div class=( "wechat-weibo-selected" if is_wechat?)
+                    =link_to "参选优秀官微", category_path(id: @category.id, media: 1), class: "btn btn-default"
+                div class=( "wechat-weibo-selected" unless is_wechat?)
+                    =link_to "参选优秀官博", category_path(id: @category.id, media: 2), class: "btn btn-default"
+            #category-show
+                - @items.each do |item|
+                    .card
+                        .row
+                            .col
+                                = link_to image_tag(item.avatar_url(:thumb), height: "50", width: "50"), item_path(item), class: "item_img"
+                            .col-6
+                                h5.d-flex.justify-content-start= item.title
+                                .gray.d-flex.justify-content-start
+                                    = item.info
+                                .d-flex.justify-content-start
+                                    small.blue
+                                        | 当前排名：
+                                        = item.rank
+                            .col
+                                .text-center
+                                    span.red= item.score
+                                    span 票
+                                .text-center
+                                    - if current_user.is_voted_the_item?(item.id)
+                                        = link_to '投票', '#', class: "disabled btn btn-sm btn-info"
+                                    - else
+                                        = link_to '投票', vote_item_path(id: item.id), method: :put, class: "btn btn-sm btn-info"
+    #footer style="z-index: 1000;"
+        - if is_wechat?
+            = link_to "全省参选官微排行榜", "#", class: "btn btn-info btn-sm"
+        - else
+            = link_to "全省参选官博排行榜", "#", class: "btn btn-info btn-sm"

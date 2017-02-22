@@ -10,6 +10,6 @@ class Category < ApplicationRecord
     end
 
     def rank
-        Category.vote.rank(id)
+        Category.vote.revrank(id).next
     end
 end

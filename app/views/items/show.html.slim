@@ -1,0 +1,29 @@
+- title(@item.title)
+#item-show
+    .avatar.item_img
+        = image_tag(@item.avatar_url(:small), width:140, height:140)
+    .title
+        = @item.title
+    .info
+        | 简介：
+        br
+        = @item.info
+    .rank-score
+        .score
+            | 当前得票：
+            = @item.score
+            | 票
+        .rank
+            | 当前排名：
+            = @item.rank
+    footer
+        .vote
+            - if current_user.is_voted_the_item?(@item.id)
+                = link_to '投票', '#', class: "disabled btn btn-sm btn-info"
+            - else
+                = link_to '投票', vote_item_path(id: @item.id), method: :put, class: "btn btn-sm btn-info"
+        .rank-panel
+            - if @item.wechat?
+                = link_to "全省参选官微排行榜", "#", class: "btn btn-info btn-sm"
+            - else
+                = link_to "全省参选官博排行榜", "#", class: "btn btn-info btn-sm"

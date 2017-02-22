@@ -7,4 +7,13 @@ Rails.application.routes.draw do
     resources :sessions, only: [:new, :create, :destroy]
     root to: 'categories#index', as: :root
   end
+
+  resources :categories, only: [:index, :show] do
+    resources :items, only: [:index, :show]
+  end
+
+  root to: 'categories#index', as: :root
+  resources :items, only:  :show do
+    put :vote, on: :member
+  end
 end

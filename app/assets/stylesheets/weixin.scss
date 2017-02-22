@@ -1,0 +1,58 @@
+
+// categories#show
+
+.category_show {
+    .btn-group {
+        background: white;
+        font-weight: bold;
+        .wechat-weibo-selected {
+            background: #0122aa;
+            color: white;
+            .btn {
+                color: white;
+            }
+        }
+        .btn {
+            color: gray;
+        }
+    }
+}
+
+#category-show {
+    .card {
+        margin-top: 1em;
+        .item_img {
+            img {
+                border-radius: 50%;
+            }
+        }
+        .col, .col-6 {
+            padding: 0 0;
+        }
+        .col-6 {
+            h5 {
+                color: #0122aa;
+            }
+            .gray {
+                font-size: 0.4em;
+                color: gray;
+            }
+            .blue {
+                font-size: 0.4em;
+                color: white;
+                padding-left: .2em;
+                padding-right: .2em;
+                background: #0122aa;
+            }
+        }
+    }
+}
+
+// items#show
+#item-show {
+    .item_img {
+        img {
+            border-radius: 50%;
+        }
+    }
+}
