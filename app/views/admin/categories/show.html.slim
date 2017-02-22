@@ -9,7 +9,7 @@
                     .text-center =link_to "新添微信", new_admin_item_path(category_id: @category.id, media: 1), class: "btn btn-success"
                     .row
                         - @category.items.wechat.each do |item|
-                            .col-md-6.col-sm-6 style="margin-top: 1em;"
+                            .col-6 style="margin-top: 1em;"
                                 .card
                                     .card-img-top
                                         = link_to image_tag(item.avatar_url(:middle), height: "200", width: "100%"), edit_admin_item_path(id: item.id, category_id: @category.id)
@@ -35,7 +35,7 @@
                     .text-center =link_to "新添微博", new_admin_item_path(category_id: @category.id, media: 2), class: "btn btn-success"
                     .row
                         - @category.items.weibo.each do |item|
-                            .col-md-6.col-sm-6 style="margin-top: 1em;"
+                            .col-6 style="margin-top: 1em;"
                                 .card
                                     .card-img-top
                                         = link_to image_tag(item.avatar_url(:middle), height: "200", width: "100%"), edit_admin_item_path(id: item.id, category_id: @category.id)

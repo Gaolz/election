@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+    after_create :init_score
+
     has_many :items
 
     include Redis::Objects
@@ -12,4 +14,9 @@ class Category < ApplicationRecord
     def rank
         Category.vote.revrank(id).next
     end
+
+    private
+        def init_score
+            Category.vote[id] = 0
+        end
 end

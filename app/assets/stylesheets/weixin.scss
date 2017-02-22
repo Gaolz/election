@@ -1,3 +1,14 @@
+// categories#index
+#carouselExampleIndicators {
+    .carousel-inner {
+        .carousel-item {
+            img {
+                height: 200px;
+                width: 100%;
+            }
+        }
+    }
+}
 
 // categories#show
 
@@ -54,5 +65,23 @@
         img {
             border-radius: 50%;
         }
+    }
+}
+
+// categories#ranks
+
+#rank-body {
+    thead {
+        tr {
+            background-color:#ca2119;
+            color:white;
+        }
+    }
+    tbody {
+        color: white !important;
+    }
+    th {
+        text-align: center;
+        border-right:1px solid #eee;
     }
 }

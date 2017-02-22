@@ -32,12 +32,6 @@ class Admin::ItemsController < AdminController
         end
     end
 
-    def index
-        # @q = Item.ransack(params[:q])
-        # @items = @q.result
-        @items = Item.includes(:category).order(id: :desc)
-    end
-
     private
 
         def params_item

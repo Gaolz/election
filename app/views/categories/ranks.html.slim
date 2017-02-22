@@ -1,0 +1,19 @@
+- title("组织排行榜")
+#rank-head
+    = image_tag(asset_url('category_rank.jpg'), width: "100%")
+
+#rank-body
+    table.table.table-striped
+        thead
+            tr
+                th 名次
+                th 编号
+                th 名称
+                th 得票数
+        tbody
+            - @categories.each_with_index do |category, index|
+                tr align="center" class="rank-tr-<%= index % 2 %>"
+                    td= index.next.to_s.rjust(2, '0')
+                    td= "No." + category.id.to_s.rjust(2, '0')
+                    td= category.name
+                    td= category.score

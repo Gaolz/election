@@ -1,0 +1,5 @@
+- title("官微排行榜")
+#rank-head
+    = image_tag(asset_url('wechat_rank.jpg'), width: "100%")
+
+= render partial: 'rank', locals: { items: @items }

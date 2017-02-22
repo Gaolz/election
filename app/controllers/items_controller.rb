@@ -11,4 +11,12 @@ class ItemsController < ApplicationController
         @item.add_score(@user) unless @user.is_voted_the_item? @item.id
         redirect_back fallback_location:  item_path(@item)
     end
+
+    def wechat_ranks
+        @items = Item.find Item.wechat_vote.revrange(0, -1)
+    end
+
+    def weibo_ranks
+        @items = Item.find Item.weibo_vote.revrange(0, -1)
+    end
 end

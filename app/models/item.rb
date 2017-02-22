@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+    after_save :init_score
+
     mount_uploader :avatar, AvatarUploader
 
     include Redis::Objects
@@ -32,11 +34,11 @@ class Item < ApplicationRecord
     end
 
     def wechat_rank
-        Item.wechat_vote.revrank(id)&.next || '0'
+        Item.wechat_vote.revrank(id).next
     end
 
     def weibo_rank
-        Item.weibo_vote.revrank(id)&.next || '0'
+        Item.weibo_vote.revrank(id).next
     end
 
     def add_score(user=User.first)
@@ -62,4 +64,9 @@ class Item < ApplicationRecord
     def category_name
         category&.name
     end
+
+    private
+        def init_score
+            wechat? ? Item.wechat_vote[id] = 0 : Item.weibo_vote[id] = 0
+        end
 end

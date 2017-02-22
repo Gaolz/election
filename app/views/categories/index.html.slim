@@ -1,11 +1,30 @@
 - title('四川网信办微信微博投票')
 .container
+    .carousel.slide#carouselExampleIndicators
+        ol.carousel-indicators
+            li.active data-target="#carouselExampleIndicators" data-slide-to="0"
+            li data-target="#carouselExampleIndicators" data-slide-to="1"
+            li data-target="#carouselExampleIndicators" data-slide-to="2"
+        .carousel-inner
+            .carousel-item.active
+                = link_to image_tag(asset_url('category_rank.jpg'), class: "d-block img-fluid"), ranks_categories_path
+            .carousel-item
+                = link_to image_tag(asset_url('wechat_rank.jpg'), class: "d-block img-fluid"), wechat_ranks_items_path
+            .carousel-item
+                = link_to image_tag(asset_url('weibo_rank.jpg'), class: "d-block img-fluid"), weibo_ranks_items_path
+        a.carousel-control-prev href="#carouselExampleIndicators" role="button" data-slide="prev"
+            span.carousel-control-prev-icon aria-hidden="true"
+            span.sr-only Previous
+        a.carousel-control-next href="#carouselExampleIndicators" role="button" data-slide="next"
+            span.carousel-control-next-icon aria-hidden="true"
+            span.sr-only Next
+.container
     .panel-body
         .container-fluid
             - @categories.each_slice(2) do |categories|
                 .row
                     - categories.each do |category|
-                        .col
+                        .col-6
                             .card
                                 ul.list-group.list-group-flush
                                     li.list-group-item
@@ -19,3 +38,6 @@
                                         strong= category.score
                                 .card-block
                                     = link_to '查看', category_path(id: category, media: 1), class: 'btn btn-info'
+
+javascript:
+    $('.carousel').carousel()
