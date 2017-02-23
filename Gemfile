@@ -44,6 +44,8 @@ gem 'mini_magick', '4.5.1', require: false
 
 gem 'yettings'
 
+gem 'vuejs-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

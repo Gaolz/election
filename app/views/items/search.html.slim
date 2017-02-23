@@ -1,9 +1,8 @@
 - title('搜索')
 #main
     .container-fluid
-        = form_tag search_path, method: :get do
-            = text_field_tag :search
-            = submit_tag '搜索'
+        = form_tag search_path, method: :get, id: "search_form" do
+            = text_field_tag :search, 'v-on:change': 'onSearch'
     .container-fluid#item-search
         .panel-body
             #category-show

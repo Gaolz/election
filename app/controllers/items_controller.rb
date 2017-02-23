@@ -22,5 +22,8 @@ class ItemsController < ApplicationController
 
     def search
         @items = Item.where("title like ?", "%#{params[:search]}%")
+        respond_to do |format|
+            format.json { render :json => @items }
+        end
     end
 end

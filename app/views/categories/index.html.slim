@@ -20,11 +20,17 @@
             span.sr-only Next
 
 .container
-    = form_tag search_path, method: :get do
-        = text_field_tag :search
-        = submit_tag '搜索'
+    = form_tag search_path, method: :get, id: "search_form" do
+        input type="text" name="search" id="search" v-model="title" v-on:input.prevent="onSearch"
+        ul v-show="visible"
+            li v-for="item in items"
+                a href="/items/{{item.id}}"
+                    span
+                        | {{ item.title }}
+                    span
+                        | {{ item.media }}
 
-.container
+.container#category-index
     .panel-body
         .container-fluid
             - @categories.each_slice(2) do |categories|

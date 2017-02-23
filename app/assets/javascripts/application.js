@@ -14,5 +14,6 @@
 //= require bootstrap/carousel
 //= require bootstrap/util
 //= require jquery_ujs
+//= require vue
 //= require turbolinks
 //= require_tree .
