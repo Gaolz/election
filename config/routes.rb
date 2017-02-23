@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     root to: 'categories#index', as: :root
   end
 
+  get "search", to: "items#search", as: :search
+
   resources :categories, only: [:index, :show] do
     resources :items, only: [:index, :show]
 

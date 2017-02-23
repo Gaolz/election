@@ -19,4 +19,8 @@ class ItemsController < ApplicationController
     def weibo_ranks
         @items = Item.find Item.weibo_vote.revrange(0, -1)
     end
+
+    def search
+        @items = Item.where("title like ?", "%#{params[:search]}%")
+    end
 end

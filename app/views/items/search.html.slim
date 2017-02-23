@@ -1,0 +1,26 @@
+- title('搜索')
+#main
+    .container-fluid
+        = form_tag search_path, method: :get do
+            = text_field_tag :search
+            = submit_tag '搜索'
+    .container-fluid#item-search
+        .panel-body
+            #category-show
+                - @items.each do |item|
+                    .card
+                        .row
+                            .col
+                                = link_to image_tag(item.avatar_url(:thumb), height: "50", width: "50"), item_path(item), class: "item_img"
+                            .col-6
+                                h5.d-flex.justify-content-start= item.title
+                                .gray.d-flex.justify-content-start
+                                    = item.info
+                                .d-flex.justify-content-start
+                                    small.blue
+                                        | 当前排名：
+                                        = item.rank
+                            .col
+                                .text-center
+                                    span.red= item.score
+                                    span 票
