@@ -32,6 +32,7 @@ en:
       destroy_success: '成功退出'
   item:
     title: 作品名
+    slug: 副标
     info: 简介
     type: 类型
     submit: 提交

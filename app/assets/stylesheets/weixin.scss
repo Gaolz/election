@@ -10,6 +10,45 @@
     }
 }
 
+#category-search {
+     margin-bottom: 1em;
+     #search {
+         background: white url("btn_ss.png") left no-repeat;
+     }
+     h5 {
+         margin-bottom: 4px;
+     }
+}
+
+#category-index {
+    .col-6 {
+        margin: 1.2em 0;
+        .card-block {
+            padding-top: 0;
+            padding-bottom: 0;
+            .header {
+                font-size: 1.24em;
+                position: relative;
+                top: -14px;
+                background: #3152d2;
+                border: 3px solid white;
+                border-radius: 3em;
+            }
+            .footer {
+                font-size: 1.2em;
+                position: relative;
+                bottom: -.7em;
+                background: #0828af;
+                border-radius: 3em;
+                a {
+                    color: #f1d535;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
 // categories#show
 
 .category_show {

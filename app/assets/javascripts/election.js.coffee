@@ -12,6 +12,7 @@ loadElectionVue = ->
                 onSearch: ->
                     if bscd.title
                         $("#category-index").hide()
+                        $("#carouselExampleIndicators").hide()
                         bscd.visible = true
                         $.ajax "/search",
                             type: 'GET'
@@ -25,6 +26,7 @@ loadElectionVue = ->
                     else
                         bscd.visible = false
                         $("#category-index").show()
+                        $("#carouselExampleIndicators").show()
             }
         })
 

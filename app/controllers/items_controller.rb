@@ -21,6 +21,8 @@ class ItemsController < ApplicationController
     end
 
     def search
+        # future 
+        # 把 :id, :title, :media 存到 redis. redis 里面没有再从 database 里面取 
         @items = Item.where("title like ?", "%#{params[:search]}%")
         respond_to do |format|
             format.json { render :json => @items }

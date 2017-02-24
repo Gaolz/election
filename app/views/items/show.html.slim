@@ -4,6 +4,8 @@
         = image_tag(@item.avatar_url(:small), width:140, height:140)
     .title
         = @item.title
+    .slug
+        = @item.slug
     .info
         | 简介：
         br

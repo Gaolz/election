@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
     layout "wechat"
     
     def index
-        @categories = Category.all
+        @categories = Category.find Category.vote.revrange(0, -1)
     end
 
     def show

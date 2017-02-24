@@ -19,37 +19,49 @@
             span.carousel-control-next-icon aria-hidden="true"
             span.sr-only Next
 
-.container
+.container#category-search
     = form_tag search_path, method: :get, id: "search_form" do
-        input type="text" name="search" id="search" v-model="title" v-on:input.prevent="onSearch"
-        ul v-show="visible"
-            li v-for="item in items"
-                a href="/items/{{item.id}}"
-                    span
-                        | {{ item.title }}
-                    span
-                        | {{ item.media }}
+        .row.justify-content-center
+            .col
+                input type="text" autofocus="autofocus" name="search" id="search" class="col rounded border-0" style="height:40px;padding-left: 2em;" placeholder="请输入你要搜索的内容" v-model="title" v-on:input.prevent="onSearch"
+                ul.list-group v-show="visible"
+                    li.list-group-item.list-group-item-action v-for="item in items"
+                        a href="/items/{{item.id}}" style="width:100%;"
+                            .row
+                                .col-1
+                                .col-8 style="text-align:left;"
+                                    h5
+                                        | {{ item.title }}
+                                    .gray style="color:gray;"
+                                        | {{ item.slug }}
+                                .col-3 style="position:absolute; right:4px;" 
+                                    div v-if="item.media == 1"
+                                        = image_tag("icon_wx.png")
+                                    div v-if="item.media == 2"
+                                        = image_tag("icon_wb.png")
 
 .container#category-index
     .panel-body
-        .container-fluid
-            - @categories.each_slice(2) do |categories|
-                .row
-                    - categories.each do |category|
-                        .col-6
-                            .card
-                                ul.list-group.list-group-flush
-                                    li.list-group-item
-                                        | 编号：
-                                        = category.id
-                                    li.list-group-item
-                                        | 名称：
-                                        = category.name
-                                    li.list-group-item
-                                        | 得票数：
-                                        strong= category.score
-                                .card-block
-                                    = link_to '查看', category_path(id: category, media: 1), class: 'btn btn-info'
+        - @categories.each_slice(2) do |categories|
+            .row
+                - categories.each do |category|
+                    .col-6
+                        .card.text-center style="background-color:#3152d2;color:white;"
+                            .card-block
+                                .header style=""
+                                    span style="margin-right:5px;"
+                                        | NO:
+                                    span= category.rank.to_s.rjust(2, '0')
+                                .title
+                                    h3= category.name
+                                    span style="color:#f1d535;font-size:1.4em;"
+                                        = category.score
+                                    span style="font-size:1.2em;" 票
+                                .footer
+                                    = link_to '查看', category_path(id: category, media: 1)
 
 javascript:
-    $('.carousel').carousel()
+    $('.carousel').carousel();
+    $('.col-6').click(function(){
+        window.location = $(this).find('a').attr("href")
+    })

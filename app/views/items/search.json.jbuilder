@@ -1,3 +1,3 @@
 json.array!(@items) do |item|
-    item.extract! item, :id, :title, :media
+    json.extract! item, :id, :title, :slug, :media
 end

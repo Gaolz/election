@@ -35,7 +35,7 @@ class Admin::ItemsController < AdminController
     private
 
         def params_item
-            params.require(:item).permit(:title, :info, :media, :category_id, :avatar)
+            params.require(:item).permit(:title, :slug, :info, :media, :category_id, :avatar)
         end
 
         def set_category_and_media
