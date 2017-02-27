@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :items
     resources :categories
     resources :sessions, only: [:new, :create, :destroy]
+    resource :door, only: [:show, :update]
     root to: 'categories#index', as: :root
   end
 

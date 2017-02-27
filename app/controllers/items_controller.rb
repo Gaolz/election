@@ -7,10 +7,15 @@ class ItemsController < ApplicationController
     end
 
     def vote
-        @item ||= Item.find(params[:id])
-        @user ||= User.first || User.find(openid: session[:openid])
-        @item.add_score(@user) unless @user.is_voted_the_item? @item.id
-        redirect_back fallback_location:  item_path(@item)
+        if Redis::Value.new('election:door').nil?
+            flash[:alert] = '投票还未开始'
+            redirect_back fallback_location: item_path(params[:id])
+        else
+            @item ||= Item.find(params[:id])
+            @user ||= User.first || User.find(openid: session[:openid])
+            @item.add_score(@user) unless @user.is_voted_the_item? @item.id
+            redirect_back fallback_location:  item_path(@item)
+        end
     end
 
     def wechat_ranks
