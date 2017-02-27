@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
 
     def show
         @category = Category.find(params[:id])
+        @category.hit_incr
         if params[:media] == '1' # wechat
             @items = @category.items.wechat.sort_by{ |item| Item.wechat_revrange.index item.id.to_s }
         else

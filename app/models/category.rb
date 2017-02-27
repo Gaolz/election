@@ -7,6 +7,14 @@ class Category < ApplicationRecord
     sorted_set :vote, :global => true
     counter :hit # 浏览次数
 
+    def hit_incr
+        hit.incr
+    end
+
+    def hit_value
+        hit.value
+    end
+
     def score
         Category.vote.score(id).to_i
     end

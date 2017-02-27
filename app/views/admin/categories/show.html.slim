@@ -26,6 +26,9 @@
                                         li.list-group-item
                                             | 得票数：
                                             strong= item.score
+                                        li.list-group-item
+                                            | 浏览量：
+                                            strong= item.hit_value
                                     .card-block
                                         = link_to '修改', edit_admin_item_path(id: item.id, category_id: @category.id), class: 'btn btn-secondary'
                 .col
@@ -49,5 +52,8 @@
                                         li.list-group-item
                                             | 得票数：
                                             strong= item.score
+                                        li.list-group-item
+                                            | 浏览量：
+                                            strong= item.hit_value
                                     .card-block
                                         = link_to '修改', edit_admin_item_path(id: item.id, category_id: @category.id), class: 'btn btn-secondary'

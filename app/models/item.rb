@@ -65,6 +65,14 @@ class Item < ApplicationRecord
         user.voted_items << id
     end
 
+    def hit_value
+        hit.value
+    end
+
+    def hit_incr
+        hit.incr
+    end
+
     def category_name
         category&.name
     end

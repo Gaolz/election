@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
 
     def show
         @item = Item.find(params[:id])
+        @item.hit_incr
     end
 
     def vote
