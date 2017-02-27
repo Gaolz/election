@@ -13,11 +13,11 @@ class ItemsController < ApplicationController
     end
 
     def wechat_ranks
-        @items = Item.find Item.wechat_vote.revrange(0, -1)
+        @items = Item.find Item.wechat_revrange
     end
 
     def weibo_ranks
-        @items = Item.find Item.weibo_vote.revrange(0, -1)
+        @items = Item.find Item.weibo_revrange
     end
 
     def search

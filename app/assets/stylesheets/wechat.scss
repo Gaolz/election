@@ -10,23 +10,3 @@ body {
   text-align: center;
   font-size: 14px;
 }
-
-#main{
-  min-height: 100%;
-  position: relative;
-  #container {
-    // padding-bottom:40px;
-    background-color: #bdb76b;
-  }
-  #footer{
-    background-color: #ffc0cb;
-    bottom:0;
-    position:fixed;
-    z-index:150;
-    _position:absolute;
-    _top:expression(eval(document.documentElement.scrollTop+
-        (document.documentElement.clientHeight-this.offsetHeight)));
-    height:35px;
-    width: 100%;
-  }
-}

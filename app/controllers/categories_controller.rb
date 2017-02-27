@@ -7,7 +7,11 @@ class CategoriesController < ApplicationController
 
     def show
         @category = Category.find(params[:id])
-        @items = @category.items.where(media: params[:media])
+        if params[:media] == '1' # wechat
+            @items = @category.items.wechat.sort_by{ |item| Item.wechat_revrange.index item.id.to_s }
+        else
+            @items = @category.items.weibo.sort_by{ |item| Item.weibo_revrange.index item.id.to_s }
+        end
     end
 
     def ranks

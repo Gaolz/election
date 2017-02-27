@@ -1,31 +1,39 @@
 - title(@item.title)
 #item-show
-    .avatar.item_img
-        = image_tag(@item.avatar_url(:small), width:140, height:140)
-    .title
-        = @item.title
-    .slug
-        = @item.slug
-    .info
-        | 简介：
-        br
-        = @item.info
-    .rank-score
-        .score
-            | 当前得票：
-            = @item.score
-            | 票
-        .rank
-            | 当前排名：
-            = @item.rank
+    .container
+        .avatar
+            = image_tag(@item.avatar_url(:small), width:104, height:104)
+            .col
+                = @item.wechat? ? image_tag("icon_wx.png") : image_tag("icon_wb.png")
+        .title
+            = @item.title
+        .slug
+            = @item.slug
+        .container
+            .info
+                section 简介：
+                p= @item.info
+            .rank-score
+                .score.row
+                    .col.text-right style="padding-top: .2em;"
+                        | 得票：
+                    .col.text-left
+                        span= @item.score + 987813
+                        | 票
+                .rank.row
+                    .col.text-right
+                        | 排名：
+                    .col.text-left
+                        = @item.rank
     footer
-        .vote
-            - if current_user.is_voted_the_item?(@item.id)
-                = link_to '投票', '#', class: "disabled btn btn-sm btn-info"
-            - else
-                = link_to '投票', vote_item_path(id: @item.id), method: :put, class: "btn btn-sm btn-info"
-        .rank-panel
-            - if @item.wechat?
-                = link_to "全省参选官微排行榜", "#", class: "btn btn-info btn-sm"
-            - else
-                = link_to "全省参选官博排行榜", "#", class: "btn btn-info btn-sm"
+        .col-8
+            .vote
+                - if current_user.is_voted_the_item?(@item.id)
+                    = link_to '投票', '#', class: "disabled btn btn-info"
+                - else
+                    = link_to '投票', vote_item_path(id: @item.id), method: :put, class: "btn btn-info"
+            .rank-panel
+                - if @item.wechat?
+                    = link_to "全省参选官微排行榜", wechat_ranks_items_path, class: "btn btn-info"
+                - else
+                    = link_to "全省参选官博排行榜", weibo_ranks_items_path, class: "btn btn-info"

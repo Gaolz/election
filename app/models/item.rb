@@ -13,6 +13,14 @@ class Item < ApplicationRecord
     scope :wechat, -> { where(media: 1) }
     scope :weibo, -> { where(media: 2) }
 
+    def self.wechat_revrange
+        wechat_vote.revrange(0, -1)
+    end
+
+    def self.weibo_revrange
+        weibo_vote.revrange(0, -1)
+    end
+
     def wechat?
         media == 1
     end
@@ -55,10 +63,6 @@ class Item < ApplicationRecord
         Item.weibo_vote.incr(id)
         Category.vote.incr(category_id)
         user.voted_items << id
-    end
-
-    def media_name
-        wechat? ? '微信' : '微博'
     end
 
     def category_name

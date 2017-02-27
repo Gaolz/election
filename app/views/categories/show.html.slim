@@ -11,16 +11,17 @@
                 - @items.each do |item|
                     .card
                         .row
-                            .col
+                            .col.align-self-center
                                 = link_to image_tag(item.avatar_url(:thumb), height: "50", width: "50"), item_path(item), class: "item_img"
                             .col-6
-                                h5.d-flex.justify-content-start= item.title
-                                .gray.d-flex.justify-content-start
-                                    = item.slug
-                                .d-flex.justify-content-start
-                                    small.blue
-                                        | 当前排名：
-                                        = item.rank
+                                a href="/items/#{item.id}"
+                                    h5.d-flex.justify-content-start= item.title
+                                    .gray.d-flex.justify-content-start
+                                        = item.slug
+                                    .d-flex.justify-content-start
+                                        small.blue
+                                            | 当前排名：
+                                            = item.rank
                             .col
                                 .text-center
                                     span.red= item.score
@@ -30,8 +31,9 @@
                                         = link_to '投票', '#', class: "disabled btn btn-sm btn-info"
                                     - else
                                         = link_to '投票', vote_item_path(id: item.id), method: :put, class: "btn btn-sm btn-info"
-    #footer style="z-index: 1000;"
-        - if is_wechat?
-            = link_to "全省参选官微排行榜", "#", class: "btn btn-info btn-sm"
-        - else
-            = link_to "全省参选官博排行榜", "#", class: "btn btn-info btn-sm"
+    #footer
+        .button
+            - if is_wechat?
+                = link_to "全省参选官微排行榜", wechat_ranks_items_path, class: "btn btn-info btn-sm"
+            - else
+                = link_to "全省参选官博排行榜", weibo_ranks_items_path, class: "btn btn-info btn-sm"

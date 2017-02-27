@@ -50,49 +50,84 @@
 }
 
 // categories#show
+#main {
+    min-height: 100%;
+    position: relative;
+    #container {
+        // background-color: #bdb76b;
+        margin-bottom: 4.4em;
 
-.category_show {
-    .btn-group {
-        background: white;
-        font-weight: bold;
-        .wechat-weibo-selected {
-            background: #0122aa;
-            color: white;
-            .btn {
-                color: white;
+        .category_show {
+            .btn-group {
+                background: white;
+                font-weight: bold;
+                .wechat-weibo-selected {
+                    background: #0122aa;
+                    color: white;
+                    .btn {
+                        color: white;
+                    }
+                }
+                .btn {
+                    color: gray;
+                }
             }
-        }
-        .btn {
-            color: gray;
+
+            #category-show {
+                .card {
+                    margin-top: 1em;
+                    padding: .4em 0;
+                    .item_img {
+                        img {
+                            border-radius: 50%;
+                        }
+                    }
+                    .col, .col-6 {
+                        padding: 0 0;
+                        .red {
+                            color: red;
+                            font-size: 1.4em;
+                        }
+                    }
+                    .col-6 {
+                        a {
+                             width: 100%;
+                        }
+                        h5 {
+                            color: #0122aa;
+                            margin-bottom: 0.1rem;
+                        }
+                        .gray {
+                            font-size: 0.4em;
+                            color: gray;
+                        }
+                        .blue {
+                            font-size: 0.8em;
+                            color: white;
+                            padding-left: .2em;
+                            padding-right: .2em;
+                            background: #0122aa;
+                        }
+                    }
+                }
+            }
         }
     }
-}
 
-#category-show {
-    .card {
-        margin-top: 1em;
-        .item_img {
-            img {
-                border-radius: 50%;
-            }
-        }
-        .col, .col-6 {
-            padding: 0 0;
-        }
-        .col-6 {
-            h5 {
-                color: #0122aa;
-            }
-            .gray {
-                font-size: 0.4em;
-                color: gray;
-            }
-            .blue {
-                font-size: 0.4em;
-                color: white;
-                padding-left: .2em;
-                padding-right: .2em;
-                background: #0122aa;
+    #footer{
+        background-color: #ffc0cb;
+        bottom:0;
+        position:fixed;
+        z-index:150;
+        _position:absolute;
+        _top:expression(eval(document.documentElement.scrollTop+
+            (document.documentElement.clientHeight-this.offsetHeight)));
+        height:44px;
+        padding-bottom: 1em;
+        width: 100%;
+        .button {
+            a {
+                padding: .4em;
             }
         }
     }
@@ -100,9 +135,62 @@
 
 // items#show
 #item-show {
-    .item_img {
-        img {
-            border-radius: 50%;
+    font-size: 1.14em;
+    .container {
+        margin-bottom: 1.4em;
+        .avatar {
+            margin-top: 1.4em;
+            img {
+                border-radius: 50%;
+            }
+
+            .col {
+                height: 1.4em;
+                img {
+                    position: relative;
+                    top: -2em;
+                    right: -3.4em;
+                }
+            }
+        }
+
+        .title { color: #0122aa; font-size: 1.84em; }
+
+        .info {
+            text-align:left;
+            font-size: 1em;
+            margin-bottom: .4em;
+            p {
+                margin-top: 1em;
+                line-height: 1.2;
+            }
+        }
+
+        .rank-score {
+            .score {
+                span {
+                    color: red;
+                    margin-top: .4em;
+                    font-size: 1.2em;
+                }
+            }
+            .score, .rank {
+                .col {
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    footer {
+        .col-8 {
+            float: none;
+            margin: 0 auto;
+            .vote, .rank-panel {
+                width: 100%;
+                margin: 1.4em 0;
+                a { width: 100%; }
+            }
         }
     }
 }
