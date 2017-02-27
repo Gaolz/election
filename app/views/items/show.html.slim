@@ -29,11 +29,11 @@
         .col-8
             .vote
                 - if current_user.is_voted_the_item?(@item.id)
-                    = link_to '投票', '#', class: "disabled btn btn-info"
+                    = link_to '投票', '#', class: "disabled btn"
                 - else
-                    = link_to '投票', vote_item_path(id: @item.id), method: :put, class: "btn btn-info"
+                    = link_to '投票', vote_item_path(id: @item.id), method: :put, class: "btn"
             .rank-panel
                 - if @item.wechat?
-                    = link_to "全省参选官微排行榜", wechat_ranks_items_path, class: "btn btn-info"
+                    = link_to "全省参选官微排行榜", wechat_ranks_items_path, class: "btn"
                 - else
-                    = link_to "全省参选官博排行榜", weibo_ranks_items_path, class: "btn btn-info"
+                    = link_to "全省参选官博排行榜", weibo_ranks_items_path, class: "btn"

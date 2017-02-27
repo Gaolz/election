@@ -28,12 +28,13 @@
                                     span 票
                                 .text-center
                                     - if current_user.is_voted_the_item?(item.id)
-                                        = link_to '投票', '#', class: "disabled btn btn-sm btn-info"
+                                        = link_to '投票', '#', class: "disabled btn btn-sm"
                                     - else
-                                        = link_to '投票', vote_item_path(id: item.id), method: :put, class: "btn btn-sm btn-info"
+                                        = link_to '投票', vote_item_path(id: item.id), method: :put, class: "btn btn-sm"
     #footer
-        .button
-            - if is_wechat?
-                = link_to "全省参选官微排行榜", wechat_ranks_items_path, class: "btn btn-info btn-sm"
-            - else
-                = link_to "全省参选官博排行榜", weibo_ranks_items_path, class: "btn btn-info btn-sm"
+        .col-8
+            .rank-panel
+                - if is_wechat?
+                    = link_to "全省参选官微排行榜", wechat_ranks_items_path, class: "btn"
+                - else
+                    = link_to "全省参选官博排行榜", weibo_ranks_items_path, class: "btn"
