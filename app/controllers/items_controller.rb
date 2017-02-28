@@ -12,9 +12,13 @@ class ItemsController < ApplicationController
             redirect_back fallback_location: item_path(params[:id])
         else
             @item ||= Item.find(params[:id])
-            @user ||= User.first || User.find(openid: session[:openid])
-            @item.add_score(@user.id) unless @item.is_voted_by_user? @user.id
-            redirect_back fallback_location:  item_path(@item)
+            @user ||= User.second || User.find(openid: session[:openid])
+            if Item.voted_users.include? @user.id # 如果用户不是第一次投票
+                @item.add_score(@user.id) unless @item.is_voted_by_user? @user.id # 用户是否投过该自媒体
+                redirect_back fallback_location:  item_path(@item)
+            else
+                # 转验证码
+            end
         end
     end
 

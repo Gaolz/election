@@ -26,6 +26,6 @@ module ApplicationHelper
 
     # To be fix
     def current_user
-        User.first
+        User.second
     end
 end

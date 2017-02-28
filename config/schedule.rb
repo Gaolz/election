@@ -19,6 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
+# 每天凌晨清零投票用户
 every 1.day, at: "0:00 am" do
     runner "Item.all.each { |item| item.voted_user.clear }"
 end
