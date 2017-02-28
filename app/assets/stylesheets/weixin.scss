@@ -112,10 +112,17 @@
                     .col {
                         .text-center {
                             a {
-                                width: 64%;
-                                background: #0122aa;
+                                width: 4em;
+                                font-size: 1em;
                                 border-color: #0122aa;
                                 color: yellow;
+                                padding-left: 1.4em;
+                            }
+                            .red-heart {
+                                background: #0122aa url("icon_heart.png") left no-repeat;
+                            }
+                            .heart {
+                                background: #0122aa url("icon_heart_b.png") left no-repeat;
                             }
                         }
                     }
@@ -125,30 +132,33 @@
     }
 
     #footer{
-        background-color: #ffc0cb;
+        // background-color: #ffc0cb;
         bottom:0;
         position:fixed;
         z-index:150;
         _position:absolute;
         _top:expression(eval(document.documentElement.scrollTop+
             (document.documentElement.clientHeight-this.offsetHeight)));
-        height:44px;
+        height:34px;
         padding-bottom: 1em;
         width: 100%;
         .row {
-            height: 44px;
+            height: 34px;
             .rank-panel, .root {
                 width: 100%;
-                height: 44px;
-                margin-top: .4em;
+                height: 34px;
                 a {
                     width: 100%;
                     height: 100%;
-                    padding-top: .84em;
                     font-size: 1em;
                     background: #0122aa;
                     border-color: #0122aa;
                     color: yellow;
+                }
+            }
+            .root {
+                a {
+                    background: #0122aa url("icon_back.png") 2em .4em no-repeat;
                 }
             }
         }
@@ -208,7 +218,7 @@
         .col-8 {
             float: none;
             margin: 0 auto;
-            .vote, .rank-panel {
+            .vote, .rank-panel, .root {
                 width: 100%;
                 margin: 1.4em 0;
                  a {
@@ -219,24 +229,65 @@
                     color: yellow;
                 }
             }
+            .vote {
+                .red-heart {
+                    background: #0122aa url("icon_heart_b.png") 3em .74em no-repeat;
+                }
+                .heart {
+                    background: #0122aa url("icon_heart.png") 3em .74em no-repeat;
+                }
+            }
+            .root {
+                a {
+                    background: #0122aa url("icon_back.png") 3em .4em no-repeat;
+                }
+            }
         }
     }
 }
 
 // items#ranks
-
-#rank-body {
-    tbody {
-        background: white;
-        color: #0122aa;
-        tr {
-            align: center;
-            .item_img {
-                img {
-                    border-radius: 50%;
+#rank-item {
+    min-height: 100%;
+    position: relative;
+    #rank-body {
+        margin-bottom: 4em;
+        tbody {
+            background: white;
+            color: #0122aa;
+            tr {
+                align: center;
+                .item_img {
+                    img {
+                        border-radius: 50%;
+                    }
                 }
+                span { font-size: 1.24em; color:red;}
             }
-            span { font-size: 1.24em; color:red;}
+        }
+    }
+
+    #rank-footer {
+        bottom:0;
+        position:fixed;
+        z-index:150;
+        _position:absolute;
+        _top:expression(eval(document.documentElement.scrollTop+
+            (document.documentElement.clientHeight-this.offsetHeight)));
+        height:34px;
+        padding-bottom: 1em;
+        width: 100%;
+        .col-8 {
+            height: 34px;
+            margin: 0 auto;
+            a {
+                width: 100%;
+                height: 100%;
+                font-size: 1em;
+                background: #0122aa url("icon_back.png") 3.4em .4em no-repeat;
+                border-color: #0122aa;
+                color: yellow;
+            }
         }
     }
 }

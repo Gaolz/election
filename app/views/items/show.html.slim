@@ -18,7 +18,7 @@
                     .col.text-right style="padding-top: .2em;"
                         | 得票：
                     .col.text-left
-                        span= @item.score + 987813
+                        span= @item.score
                         | 票
                 .rank.row
                     .col.text-right
@@ -29,9 +29,11 @@
         .col-8
             .vote
                 - if current_user.is_voted_the_item?(@item.id)
-                    = link_to '投票', '#', class: "disabled btn"
+                    = link_to '投票', '#', class: "disabled btn heart"
                 - else
-                    = link_to '投票', vote_item_path(id: @item.id), method: :put, class: "btn"
+                    = link_to '投票', vote_item_path(id: @item.id), method: :put, class: "btn red-heart"
+            .root
+                = link_to '返回首页', root_path, class: "btn"
             .rank-panel
                 - if @item.wechat?
                     = link_to "全省参选官微排行榜", wechat_ranks_items_path, class: "btn"

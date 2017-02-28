@@ -1,11 +1,16 @@
-#rank-body
-    table.table
-        tbody
-            - items.each_with_index do |item, index|
-                tr
-                    td= index.next.to_s.rjust(3, '0')
-                    td.item_img= image_tag(item.avatar_url(:thumb), height: "44", width: "44")
-                    td= item.title
-                    td
-                        span= item.score
-                        | 票
+#rank-item
+    #rank-body
+        table.table
+            tbody
+                - items.each_with_index do |item, index|
+                    tr
+                        td= index.next.to_s.rjust(3, '0')
+                        td.item_img= image_tag(item.avatar_url(:thumb), height: "44", width: "44")
+                        td= item.title
+                        td
+                            span= item.score
+                            | 票
+
+    #rank-footer
+        .col-8
+            = link_to '返回首页', root_path, class: "btn"

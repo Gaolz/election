@@ -23,7 +23,7 @@
     = form_tag search_path, method: :get, id: "search_form" do
         .row.justify-content-center
             .col
-                input type="text" autofocus="autofocus" name="search" id="search" class="col rounded border-0" style="height:40px;padding-left: 2em;" placeholder="请输入你要搜索的内容" v-model="title" v-on:input.prevent="onSearch"
+                input type="text" name="search" id="search" class="col rounded border-0" style="height:40px;padding-left: 2em;" placeholder="请输入你要搜索的内容" v-model="title" v-on:input.prevent="onSearch"
                 ul.list-group v-show="visible"
                     li.list-group-item.list-group-item-action v-for="item in items"
                         a href="/items/{{item.id}}" style="width:100%;"

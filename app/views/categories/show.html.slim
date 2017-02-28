@@ -1,6 +1,6 @@
 - title(@category.name)
 #main
-    .container-fluid#container
+    #container.container
         .panel-body.category_show
             .btn-group style="margin-top: 1em;"
                 div class=( "wechat-weibo-selected" if is_wechat?)
@@ -28,9 +28,9 @@
                                     span 票
                                 .text-center
                                     - if current_user.is_voted_the_item?(item.id)
-                                        = link_to '投票', '#', class: "disabled btn btn-sm"
+                                        = link_to '投票', '#', class: "disabled btn btn-sm red-heart"
                                     - else
-                                        = link_to '投票', vote_item_path(id: item.id), method: :put, class: "btn btn-sm"
+                                        = link_to '投票', vote_item_path(id: item.id), method: :put, class: "btn btn-sm heart"
     #footer
         .row
             .col-6
