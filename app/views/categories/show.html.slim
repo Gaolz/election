@@ -32,9 +32,13 @@
                                     - else
                                         = link_to '投票', vote_item_path(id: item.id), method: :put, class: "btn btn-sm"
     #footer
-        .col-8
-            .rank-panel
-                - if is_wechat?
-                    = link_to "全省参选官微排行榜", wechat_ranks_items_path, class: "btn"
-                - else
-                    = link_to "全省参选官博排行榜", weibo_ranks_items_path, class: "btn"
+        .row
+            .col-6
+                .root
+                    = link_to '返回首页', root_path, class: "btn"
+            .col-6
+                .rank-panel
+                    - if is_wechat?
+                        = link_to "全省参选官微排行榜", wechat_ranks_items_path, class: "btn"
+                    - else
+                        = link_to "全省参选官博排行榜", weibo_ranks_items_path, class: "btn"

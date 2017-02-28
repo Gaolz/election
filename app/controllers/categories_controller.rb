@@ -15,7 +15,4 @@ class CategoriesController < ApplicationController
         end
     end
 
-    def ranks
-        @categories = Category.find Category.vote.revrange(0, -1)
-    end
 end

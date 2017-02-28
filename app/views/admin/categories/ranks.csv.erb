@@ -1,0 +1,12 @@
+<%=
+    CSV.generate do |csv|
+    csv << ["排名", "名称", "得票数"]
+        @categories.each_with_index do |category, index|
+            csv << [
+                index.next.to_s.rjust(2, '0'),
+                category.name,
+                category.score
+            ]
+        end
+    end.html_safe
+%>

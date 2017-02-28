@@ -32,6 +32,22 @@ class Admin::ItemsController < AdminController
         end
     end
 
+    def wechat_ranks
+        @items = Item.find Item.wechat_revrange
+        respond_to do |format|
+            format.html
+            format.csv { render "ranks" }
+        end
+    end
+
+    def weibo_ranks
+        @items = Item.find Item.weibo_revrange
+        respond_to do |format|
+            format.html
+            format.csv { render "ranks" }
+        end
+    end
+
     private
 
         def params_item

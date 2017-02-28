@@ -1,15 +1,11 @@
 #rank-body
-    table.table.table-striped
-        thead
-            tr
-                th 名次
-                th 编号
-                th 作品名
-                th 得票数
+    table.table
         tbody
             - items.each_with_index do |item, index|
-                tr align="center" class="rank-tr-<%= index % 2 %>"
-                    td= index.next.to_s.rjust(2, '0')
-                    td= "No." + item.id.to_s.rjust(2, '0')
+                tr
+                    td= index.next.to_s.rjust(3, '0')
+                    td.item_img= image_tag(item.avatar_url(:thumb), height: "44", width: "44")
                     td= item.title
-                    td= item.score
+                    td
+                        span= item.score
+                        | 票

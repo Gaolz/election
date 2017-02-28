@@ -132,16 +132,15 @@
         _position:absolute;
         _top:expression(eval(document.documentElement.scrollTop+
             (document.documentElement.clientHeight-this.offsetHeight)));
-        height:40px;
+        height:44px;
         padding-bottom: 1em;
         width: 100%;
-        .col-8 {
-            float: none;
-            margin: 0 auto;
-            height: 40px;
-            .rank-panel {
+        .row {
+            height: 44px;
+            .rank-panel, .root {
                 width: 100%;
-                height: 40px;
+                height: 44px;
+                margin-top: .4em;
                 a {
                     width: 100%;
                     height: 100%;
@@ -224,20 +223,20 @@
     }
 }
 
-// categories#ranks
+// items#ranks
 
 #rank-body {
-    thead {
-        tr {
-            background-color:#ca2119;
-            color:white;
-        }
-    }
     tbody {
-        color: white !important;
-    }
-    th {
-        text-align: center;
-        border-right:1px solid #eee;
+        background: white;
+        color: #0122aa;
+        tr {
+            align: center;
+            .item_img {
+                img {
+                    border-radius: 50%;
+                }
+            }
+            span { font-size: 1.24em; color:red;}
+        }
     }
 }

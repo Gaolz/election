@@ -1,0 +1,18 @@
+= render partial: 'admin/rank'
+.container
+    .text-center style="margin: 1em auto;"
+        = link_to '导出微博排行榜', weibo_ranks_admin_items_path(format: :csv), class: 'btn btn-danger'
+    table.table.table-bordered
+        thead
+            tr
+                th.text-center 排名
+                th.text-center 名称
+                th.text-center 副标题
+                th.text-center 得票数
+        tbody
+            - @items.each_with_index do |item, index|
+                tr align="center"
+                    td= index.next.to_s.rjust(3, '0')
+                    td= item.title
+                    td= item.slug
+                    td= item.score

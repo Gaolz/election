@@ -39,6 +39,15 @@ class Admin::CategoriesController < AdminController
         @categories = Category.order(id: :desc)
     end
 
+    # 排行榜
+    def ranks
+        @categories = Category.find Category.vote.revrange(0, -1)
+        respond_to do |format|
+            format.html
+            format.csv
+        end
+    end
+
     private
 
         def params_category
