@@ -46,6 +46,9 @@ gem 'yettings'
 
 gem 'vuejs-rails'
 
+# cron 每天凌晨清零
+gem 'whenever', require: false
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
