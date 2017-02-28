@@ -6,12 +6,17 @@ class Item < ApplicationRecord
     include Redis::Objects
     sorted_set :wechat_vote, global: true
     sorted_set :weibo_vote, global: true
+    set :voted_user
     counter :hit # 浏览次数
 
     belongs_to :category
 
     scope :wechat, -> { where(media: 1) }
     scope :weibo, -> { where(media: 2) }
+
+    def is_voted_by_user?(user_id)
+        voted_user.member? user_id
+    end
 
     def self.wechat_revrange
         wechat_vote.revrange(0, -1)
@@ -49,20 +54,20 @@ class Item < ApplicationRecord
         Item.weibo_vote.revrank(id).next
     end
 
-    def add_score(user=User.first)
-        wechat? ? wechat_add_score(user) : weibo_add_score(user)
+    def add_score(user_id=1)
+        wechat? ? wechat_add_score(user_id) : weibo_add_score(user_id)
     end
 
-    def wechat_add_score(user)
+    def wechat_add_score(user_id)
         Item.wechat_vote.incr(id)
         Category.vote.incr(category_id)
-        user.voted_items << id
+        voted_user.add(user_id)
     end
 
-    def weibo_add_score(user)
+    def weibo_add_score(user_id)
         Item.weibo_vote.incr(id)
         Category.vote.incr(category_id)
-        user.voted_items << id
+        voted_user.add(user_id)
     end
 
     def hit_value
