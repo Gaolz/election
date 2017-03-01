@@ -36,6 +36,24 @@ class ItemsController < ApplicationController
         end
     end
 
+    def check
+        openid = request.env['omniauth.auth'].extra.raw_info.openid
+        @user = User.find_or_create_by(openid: openid) do |user|
+            user.openid = openid
+        end
+
+        user_info = $client.user(openid) # 获取用户资料
+
+        if user_info.result[:subscribe] == 0 # 如果没有关注
+            redirect_to follow_path
+        else # 1, 表示关注
+            session[:user_id] = @user.openid
+            params = request.env["omniauth.params"]
+            @item ||= Item.find(params["item"])
+            redirect_to item_path(@item.id)
+        end
+    end
+
     def wechat_ranks
         @items = Item.find Item.wechat_revrange
     end
@@ -45,11 +63,14 @@ class ItemsController < ApplicationController
     end
 
     def search
-        # future 
+        # future
         # 把 :id, :title, :media 存到 redis. redis 里面没有再从 database 里面取 
         @items = Item.where("title like ?", "%#{params[:search]}%")
         respond_to do |format|
             format.json { render :json => @items }
         end
+    end
+
+    def follow
     end
 end

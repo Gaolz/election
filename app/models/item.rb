@@ -44,14 +44,14 @@ class Item < ApplicationRecord
     end
 
     def wechat_rank
-        Item.wechat_vote.revrank(id).next
+        Item.wechat_vote.revrank(id)&.next
     end
 
     def weibo_rank
-        Item.weibo_vote.revrank(id).next
+        Item.weibo_vote.revrank(id)&.next
     end
 
-    def add_score(user_id=2)
+    def add_score(user_id)
         wechat? ? wechat_add_score(user_id) : weibo_add_score(user_id)
     end
 

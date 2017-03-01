@@ -1,0 +1,1 @@
+$client ||= WeixinAuthorize::Client.new(Yetting.wechat_app_id, Yetting.wechat_app_secret)

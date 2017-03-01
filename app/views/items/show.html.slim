@@ -30,10 +30,14 @@
     footer
         .col-8
             .vote
-                - if @item.is_voted_by_user?(current_user.id)
-                    = link_to '投票', '#', class: "disabled btn red-heart"
+                - if session[:user_id].present?
+                    - if @item.is_voted_by_user?(current_user.id)
+                        = link_to '投票', '#', class: "disabled btn red-heart"
+                    - else
+                        = link_to '投票', vote_item_path(id: @item.id), method: :put, remote: true, id: "item_vote_#{@item.id}", class: "btn heart"
                 - else
-                    = link_to '投票', vote_item_path(id: @item.id), method: :put, remote: true, id: "item_vote_#{@item.id}", class: "btn heart"
+                    = link_to "投票", "/auth/wechat?item=#{@item.id}", class: "btn btn-sm heart"
+
             .root
                 = link_to '返回首页', root_path, class: "btn"
             .rank-panel
