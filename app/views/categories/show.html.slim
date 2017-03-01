@@ -21,16 +21,18 @@
                                     .d-flex.justify-content-start
                                         small.blue
                                             | 当前排名：
-                                            = item.rank
+                                            span id="item_rank_#{item.id}"
+                                                = item.rank
                             .col
                                 .text-center
-                                    span.red= item.score
+                                    span.red id="item_score_#{item.id}"
+                                        = item.score
                                     span 票
                                 .text-center
                                     - if item.is_voted_by_user?(current_user.id)
                                         = link_to '投票', '#', class: "disabled btn btn-sm red-heart"
                                     - else
-                                        = link_to '投票', vote_item_path(id: item.id), method: :put, class: "btn btn-sm heart"
+                                        = link_to '投票', vote_item_path(id: item.id), method: :put, remote: true, id: "item_vote_#{item.id}", class: "btn btn-sm heart"
     #footer
         .row
             .col-6

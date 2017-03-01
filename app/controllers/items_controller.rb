@@ -6,18 +6,32 @@ class ItemsController < ApplicationController
         @item.hit_incr
     end
 
+    def create
+        if verify_rucaptcha?
+            @item ||= Item.find(params[:item_id])
+            @user ||= User.find_by(openid: session[:user_id])
+            session[:user_id] = @user.openid
+            @item.add_score(@user.id) unless @item.is_voted_by_user? @user.id
+            render "items/success.js.erb", format: :js
+        else
+            @item ||= Item.find(params[:item_id])
+            @status = false # 验证码错误
+            render "items/vote.js.erb", format: :js
+        end
+    end
+
     def vote
         if Redis::Value.new('election:door').nil?
-            flash[:alert] = '投票还未开始'
-            redirect_back fallback_location: item_path(params[:id])
+             render js: "alert('投票还未开始')"
         else
             @item ||= Item.find(params[:id])
-            @user ||= User.second || User.find(openid: session[:openid])
-            if Item.voted_users.include? @user.id # 如果用户不是第一次投票
-                @item.add_score(@user.id) unless @item.is_voted_by_user? @user.id # 用户是否投过该自媒体
-                redirect_back fallback_location:  item_path(@item)
-            else
+            @user ||= User.find(openid: session[:user_id])
+            if Item.all_voted_user.exclude? @user.id # 如果用户第一次投票
                 # 转验证码
+                render "items/vote.js.erb", format: :js
+            else
+                @item.add_score(@user.id) unless @item.is_voted_by_user? @user.id # 用户是否投过该自媒体
+                render "items/success.js.erb", format: :js
             end
         end
     end

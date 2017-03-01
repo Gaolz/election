@@ -1,0 +1,5 @@
+$("#yzm").remove();
+$("#item_vote_<%= @item.id %>").after("<%= j render('form') %>");
+<% if @status == false %>
+    alert("验证码错误");
+<% end %>

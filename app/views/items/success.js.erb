@@ -1,0 +1,4 @@
+$("#yzm").remove();
+$("#item_rank_<%= @item.id %>").text(<%= @item.rank %>);
+$("#item_score_<%= @item.id %>").text(<%= @item.score %>);
+$("#item_vote_<%= @item.id %>").removeClass("heart").addClass("red-heart disabled");

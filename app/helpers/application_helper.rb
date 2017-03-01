@@ -26,6 +26,6 @@ module ApplicationHelper
 
     # To be fix
     def current_user
-        User.second
+        User.find(session[:user_id])
     end
 end

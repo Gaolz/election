@@ -42,6 +42,9 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick', '4.5.1', require: false
 
+gem 'rucaptcha'
+gem 'redis-rails'
+
 gem 'yettings'
 
 gem 'vuejs-rails'

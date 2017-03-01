@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  mount RuCaptcha::Engine => "/rucaptcha"
+
   namespace :admin do
     resources :items do
       collection do
@@ -22,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   root to: 'categories#index', as: :root
-  resources :items, only:  :show do
+  resources :items, only:  [:show, :create] do
     put :vote, on: :member
     collection do
       get :wechat_ranks, :weibo_ranks
