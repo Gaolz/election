@@ -12,23 +12,20 @@
 
 ActiveRecord::Schema.define(version: 20170224094326) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", limit: 10
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string  "title",                             null: false
-    t.text    "info"
-    t.string  "avatar",                            null: false
-    t.integer "media",       limit: 2, default: 1, null: false
-    t.integer "category_id",                       null: false
+  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "title",                                 null: false
+    t.text    "info",        limit: 65535
+    t.string  "avatar",                                null: false
+    t.integer "media",       limit: 2,     default: 1, null: false
+    t.integer "category_id",                           null: false
     t.string  "slug"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "openid"
     t.index ["openid"], name: "index_users_on_openid", using: :btree
   end
