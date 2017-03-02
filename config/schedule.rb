@@ -22,4 +22,5 @@
 # 每天凌晨清零投票用户
 every 1.day, at: "0:00 am" do
     runner "Item.all.each { |item| item.voted_user.clear }"
+    runner "Item.all_voted_user.clear"
 end
